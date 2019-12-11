@@ -56,7 +56,8 @@ const keyUpChars$ = keyup$.pipe(
 import { useEffect } from 'atomico'
 ...
 useEffect(() => {
-    const slot = ref.current.shadowRoot.querySelector('slot[name="input"]')
+    ...
+    const slot = shadowRoot.querySelector('slot[name="input"]')
     slot.onkeyup = keyupEmit
   }, [])
 ```
