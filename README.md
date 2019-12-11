@@ -95,7 +95,7 @@ reactiveInput.addEventListener('typedchars', e => {
 /index.html
 ...
 <style>
-input {
+.my-input {
   width: 200px;
   height: 1rem;
   margin: 20px;
@@ -106,7 +106,7 @@ input {
 </style>
 ...
 <reactive-input id="reactive-input-id">
-  <input slot="input" placeholder="reactive WITH slot" />
+  <input slot="input" class="my-input" placeholder="reactive WITH slot" />
 </reactive-input>
 ```
 
