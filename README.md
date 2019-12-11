@@ -74,5 +74,23 @@ import { useEffect } from 'atomico'
   }, [])
 ```
 
+**Styling `input slot` in outside code**
+```bash
+/index.html
+...
+<style>
+input {
+  width: 200px;
+  height: 1rem;
+  margin: 20px;
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+</style>
+<reactive-input id="reactive-input-id">
+  <input slot="input" placeholder="reactive WITH slot" />
+</reactive-input>
+```
 
 
