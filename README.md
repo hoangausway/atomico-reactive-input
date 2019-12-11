@@ -43,7 +43,7 @@ import { map } from 'rxjs/operators'
 const [keyupEmit, keyup$] = useEventStream()
 ...
 # manipulating keyup$ stream
-const keyUpChars$ = keyup$.pipe(
+const keyupChars$ = keyup$.pipe(
     map(e => e.target.value),
     debounceTime(300),
     distinctUntilChanged()
@@ -67,7 +67,7 @@ useEffect(() => {
 import { useEffect } from 'atomico'
 ...
   useEffect(() => {
-    const sub = keyUpChars$.subscribe(typedchars =>
+    const sub = keyupChars$.subscribe(typedchars =>
       dispatchTypedChars({ typedchars })
     )
     return () => sub.unsubscribe()

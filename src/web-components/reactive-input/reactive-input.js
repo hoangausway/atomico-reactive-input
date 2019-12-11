@@ -1,4 +1,4 @@
-import { h, customElement, useEffect, useEvent, useRef } from 'atomico'
+import { h, customElement, useEffect, useEvent, useRef, useHost } from 'atomico'
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 import { useEventStream } from './useEventStream'
@@ -10,15 +10,13 @@ import { useEventStream } from './useEventStream'
   - placeholder: text placeholder for input element
 */
 const ReactiveInput = props => {
-  const ref = useRef()
-
   // create a pair of event emitter 'keyupEmit' and related stream 'keyup$'
   const [keyupEmit, keyup$] = useEventStream()
 
   // - map 'keyup$' stream to typed sequence
   // - debounce keyup event
   // - fire event if accumulated input value changed
-  const keyUpChars$ = keyup$.pipe(
+  const keyupChars$ = keyup$.pipe(
     map(e => e.target.value),
     debounceTime(props.debounce),
     distinctUntilChanged()
@@ -30,22 +28,29 @@ const ReactiveInput = props => {
     bubbles: true
   })
 
+  // ref to host
+  const host = useHost()
+
   // assign onkeyup for input element
   useEffect(() => {
-    const slot = ref.current.shadowRoot.querySelector('slot[name="input"]')
+    const shadowRoot = host.current.shadowRoot
+    const slot = shadowRoot.querySelector('slot[name="input"]')
+    // setup keyup handler
     slot.onkeyup = keyupEmit
   }, [])
 
   // observe 'keyupChars$' stream and dispatch typed chars accordingly
   useEffect(() => {
-    const sub = keyUpChars$.subscribe(typedchars =>
+    // observe 'typedchars' stream
+    const sub = keyupChars$.subscribe(typedchars =>
       dispatchTypedChars({ typedchars })
     )
+    // unsubscribe
     return () => sub.unsubscribe()
   }, [])
 
   return (
-    <host shadowDom ref={ref}>
+    <host shadowDom>
       <slot name='input' />
     </host>
   )
