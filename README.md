@@ -16,7 +16,7 @@ Show how to implement an reactive input component using Atomico with RxJS
 ## Takeaways
 **Engage DOM event with RxJS stream using Atomico useMemo/useCallback**
 ```bash
-/src/web-components/game-of-life/useEventStream.js
+/src/web-components/reactive-input/useEventStream.js
 
 import { useMemo } from 'atomico'
 import { Subject } from 'rxjs'
