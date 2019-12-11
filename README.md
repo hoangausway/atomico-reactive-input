@@ -45,7 +45,7 @@ const [keyupEmit, keyup$] = useEventStream()
 # manipulating keyup$ stream
 const keyUpChars$ = keyup$.pipe(
     map(e => e.target.value),
-    debounceTime(props.debounce),
+    debounceTime(300),
     distinctUntilChanged()
   )
 ```
