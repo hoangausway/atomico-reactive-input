@@ -88,6 +88,7 @@ input {
   font-size: 0.85rem;
 }
 </style>
+...
 <reactive-input id="reactive-input-id">
   <input slot="input" placeholder="reactive WITH slot" />
 </reactive-input>
