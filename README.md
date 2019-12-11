@@ -1,5 +1,5 @@
 # atomico-reactive-input
-Show how to implement an reactive input component using Atomico with RxJS
+An simple reactive input component using Atomico with RxJS
 
 ## Subjects
 
@@ -8,10 +8,10 @@ Show how to implement an reactive input component using Atomico with RxJS
 
 ## To show
 - Using Atomico and RxJS to make reactive web component
-- With slot, user code can apply CSS for inserted elements as normal.
+- Styling input component in cases with or without using slot.
 
-(Slot is more 'open' regarding styling. However, without slot there should be some way to let user code manipulate CSS behind shadow dom using Javascript)
-
+For more advanced example please see:
+[The Conway's Game Of Life using Atomico and RxJS](https://github.com/hoangausway/atomico-game-of-life)
 
 ## Takeaways
 **Engage DOM event with RxJS stream using Atomico `useMemo`/`useCallback`**
