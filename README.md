@@ -74,6 +74,22 @@ import { useEffect } from 'atomico'
   }, [])
 ```
 
+**Outside code to listen to event `typedchars`**
+```bash
+/index.html
+...
+# define array `keys`
+...
+# get element `reactive-input`
+const reactiveInput = document.getElementById("reactive-input-id")
+
+# listen to event `typedchars`
+reactiveInput.addEventListener('typedchars', e => {
+  const typedchars = e.detail.typedchars
+  const filteredKeys = (keys.filter(v => v.indexOf(typedchars.toUpperCase()) > -1))
+  divFilteredKeys.innerHTML = filteredKeys.join("<br>") # show filtered result
+})
+```
 **Styling `input slot` in outside code**
 ```bash
 /index.html
