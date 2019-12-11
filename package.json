@@ -1,0 +1,19 @@
+{
+	"name": "atomico-reactive-input",
+	"description": "atomico-reactive-input",
+	"version": "1.0.0",
+	"source": "index.html",
+	"scripts": {
+		"build": "bundle index.html dist",
+		"build:web-components": "bundle src/web-components/**/*-*.js web-components --external",
+		"dev": "bundle index.html dist --watch --server",
+		"prepare": "npm run build"
+	},
+	"dependencies": {
+		"atomico": ">=0.8",
+		"rxjs": "^6.5.3"
+	},
+	"devDependencies": {
+		"bundle-cli": "^0.6.2"
+	}
+}

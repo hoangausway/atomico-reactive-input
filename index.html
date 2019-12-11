@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hello World</title>
+    <meta name="description" content="" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      input {
+        width: 200px;
+        height: 1rem;
+        margin: 20px;
+        padding: 3px;
+        border-radius: 3px;
+        font-size: 0.85rem;
+      }
+      web-input {
+        width: 200px;
+        height: 1rem;
+        border-radius: 5px;
+        margin: 20px;
+        font-size: 1rem;
+      }
+      #filtered-keys {
+        width: 10rem;
+        height: 12rem;
+        overflow: scroll; 
+        margin: 20px;
+        padding: 6px;
+        font-size: 0.75rem;
+        border: 1px solid navy
+      }
+    </style>
+   <script src="patterns.js" ></script>
+   <script>
+      window.onload = function() {
+        const keys = Object.keys(patterns)
+        
+        const divFilteredKeys = document.getElementById("filtered-keys")
+        divFilteredKeys.innerHTML = keys.join("<br>")
+
+        const webInput = document.getElementById("reactive-input-without-slot-id")
+        webInput.addEventListener('typedchars', e => {
+          const typedchars = e.detail.typedchars
+          const filteredKeys = (keys.filter(v => v.indexOf(typedchars.toUpperCase()) > -1))
+          divFilteredKeys.innerHTML = filteredKeys.join("<br>")
+        })
+
+        const reactiveInput = document.getElementById("reactive-input-id")
+        reactiveInput.addEventListener('typedchars', e => {
+          const typedchars = e.detail.typedchars
+          const filteredKeys = (keys.filter(v => v.indexOf(typedchars.toUpperCase()) > -1))
+          divFilteredKeys.innerHTML = filteredKeys.join("<br>")
+        })
+
+      }
+    </script>
+  </head>
+  <body>
+    <reactive-input id="reactive-input-id">
+      <input slot="input" placeholder="reactive WITH slot" />
+    </reactive-input>
+    <reactive-input-without-slot id="reactive-input-without-slot-id" placeholder="reactive without slot"></reactive-input-without-slot>
+    <div id="filtered-keys"></div>
+    <script
+      type="module"
+      src="src/web-components/reactive-input-without-slot/reactive-input-without-slot.js"
+    ></script>
+    <script
+      type="module"
+      src="src/web-components/reactive-input/reactive-input.js"
+    ></script>
+  </body>
+</html>
