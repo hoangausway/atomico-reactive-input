@@ -14,7 +14,7 @@ Show how to implement an reactive input component using Atomico with RxJS
 
 
 ## Takeaways
-**Engage DOM event with RxJS stream using Atomico useMemo/useCallback**
+**Engage DOM event with RxJS stream using Atomico `useMemo`/`useCallback`**
 ```bash
 /src/web-components/reactive-input/useEventStream.js
 
@@ -50,7 +50,7 @@ const keyUpChars$ = keyup$.pipe(
   )
 ```
 
-**Emit stream within useEffect**
+**Emit stream within `useEffect`**
 ```bash
 /src/web-components/reactive-input/reactive-input.js
 import { useEffect } from 'atomico'
@@ -61,7 +61,7 @@ useEffect(() => {
     slot.onkeyup = keyupEmit
   }, [])
 ```
-**Subscribe/unsubscribe stream within useEffect**
+**Subscribe/unsubscribe stream within `useEffect`**
 ```bash
 /src/web-components/reactive-input/reactive-input.js
 import { useEffect } from 'atomico'
