@@ -24,11 +24,12 @@ import { Subject } from 'rxjs'
 export const useEventStream = (dependencies = []) => {
   const eventStream$ = useMemo(() => new Subject(), dependencies)
   const eventEmit = e => eventStream$.next(e)
-  # useCallback maybe OK here:
-  # const eventEmit = useCallback(e => eventStream$.next(e), dependencies)
-  # at the writing moment the useCallback not available yet.
   return [eventEmit, eventStream$]
 }
+# Note: useCallback maybe OK defining eventEmit if dependencies were important
+# const eventEmit = useCallback(e => eventStream$.next(e), dependencies)
+# at the writing moment the useCallback not available yet.
+
 ```
 
 Usage of useEventStream:
