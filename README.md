@@ -32,7 +32,7 @@ export const useEventStream = (dependencies = []) => {
 
 ```
 
-Usage of `useEventStream`:
+**Usage of `useEventStream`**
 
 ```bash
 /src/web-components/reactive-input/reactive-input.js
