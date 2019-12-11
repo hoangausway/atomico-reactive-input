@@ -16,7 +16,7 @@ const ReactiveInputWithoutSlot = props => {
   // - map 'keyup$' stream to typed sequence
   // - debounce keyup event
   // - fire event if accumulated input value changed
-  const keyUpChars$ = keyup$.pipe(
+  const keyupChars$ = keyup$.pipe(
     map(e => e.target.value),
     debounceTime(props.debounce),
     distinctUntilChanged()
@@ -30,7 +30,7 @@ const ReactiveInputWithoutSlot = props => {
 
   // observe 'keyupChars$' stream and dispatch typed chars accordingly
   useEffect(() => {
-    const sub = keyUpChars$.subscribe(typedchars =>
+    const sub = keyupChars$.subscribe(typedchars =>
       dispatchTypedChars({ typedchars })
     )
     return () => sub.unsubscribe()
