@@ -1,4 +1,4 @@
-import { h, customElement, useEffect, useEvent, useRef, useHost } from 'atomico'
+import { h, customElement, useEffect, useEvent, useHost } from 'atomico'
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 
 import { useEventStream } from './useEventStream'

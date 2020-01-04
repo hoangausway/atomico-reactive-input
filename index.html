@@ -23,41 +23,29 @@
         font-size: 0.85rem;
       }
       #filtered-keys {
+        display: block;
         width: 10rem;
-        height: 12rem;
+        height: 18rem;
         overflow: scroll;
-        margin: 20px;
-        padding: 6px;
+        margin-left: 20px;
         font-size: 0.75rem;
         border: 1px solid navy;
       }
     </style>
-    <script src="patterns.js"></script>
     <script>
       window.onload = function() {
-        const keys = Object.keys(patterns);
+        const sampleList = document.getElementById("filtered-keys");
 
-        const divFilteredKeys = document.getElementById("filtered-keys");
-        divFilteredKeys.innerHTML = keys.join("<br>");
-
-        const webInput = document.getElementById(
+        const reactiveInputWithSlot = document.getElementById(
           "reactive-input-without-slot-id"
         );
-        webInput.addEventListener("typedchars", e => {
-          const typedchars = e.detail.typedchars;
-          const filteredKeys = keys.filter(
-            v => v.indexOf(typedchars.toUpperCase()) > -1
-          );
-          divFilteredKeys.innerHTML = filteredKeys.join("<br>");
+        reactiveInputWithSlot.addEventListener("typedchars", e => {
+          sampleList.needle = e.detail.typedchars;
         });
 
         const reactiveInput = document.getElementById("reactive-input-id");
         reactiveInput.addEventListener("typedchars", e => {
-          const typedchars = e.detail.typedchars;
-          const filteredKeys = keys.filter(
-            v => v.indexOf(typedchars.toUpperCase()) > -1
-          );
-          divFilteredKeys.innerHTML = filteredKeys.join("<br>");
+          sampleList.needle = e.detail.typedchars;
         });
       };
     </script>
@@ -71,7 +59,7 @@
       placeholder="reactive without slot"
       class="my-input"
     ></reactive-input-without-slot>
-    <div id="filtered-keys"></div>
+    <sample-list id="filtered-keys"></sample-list>
     <script
       type="module"
       src="src/web-components/reactive-input-without-slot/reactive-input-without-slot.js"
@@ -80,5 +68,8 @@
       type="module"
       src="src/web-components/reactive-input/reactive-input.js"
     ></script>
+    <script 
+      type="module" 
+      src="src/web-components/sample-list/sample-list.js"></script>
   </body>
 </html>
